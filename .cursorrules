@@ -1,0 +1,57 @@
+# Cursor Rules for Laravel Project
+
+# PHP files
+*.php {
+    tab_size: 4
+    insert_spaces: true
+    trim_trailing_whitespace: true
+    insert_final_newline: true
+}
+
+# JavaScript/TypeScript files
+*.js,*.ts,*.jsx,*.tsx {
+    tab_size: 2
+    insert_spaces: true
+    trim_trailing_whitespace: true
+    insert_final_newline: true
+}
+
+# CSS/SCSS files
+*.css,*.scss {
+    tab_size: 2
+    insert_spaces: true
+    trim_trailing_whitespace: true
+    insert_final_newline: true
+}
+
+# Blade templates
+*.blade.php {
+    tab_size: 4
+    insert_spaces: true
+    trim_trailing_whitespace: true
+    insert_final_newline: true
+}
+
+# JSON files
+*.json {
+    tab_size: 2
+    insert_spaces: true
+    trim_trailing_whitespace: true
+    insert_final_newline: true
+}
+
+# Markdown files
+*.md {
+    tab_size: 2
+    insert_spaces: true
+    trim_trailing_whitespace: true
+    insert_final_newline: true
+}
+
+# YAML files
+*.yml,*.yaml {
+    tab_size: 2
+    insert_spaces: true
+    trim_trailing_whitespace: true
+    insert_final_newline: true
+} 

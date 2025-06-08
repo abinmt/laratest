@@ -1,5 +1,252 @@
 # Cursor Rules for Laravel Project
 
+*.php {
+    # SOLID Principles Rulesets
+    enforce-single-responsibility: true
+    enforce-open-closed: true
+    enforce-liskov-substitution: true
+    enforce-interface-segregation: true
+    enforce-dependency-inversion: true
+    # Single Responsibility Principle
+    max_file_length: 300
+    max_method_length: 20
+    max_class_length: 200
+    max_parameters_per_method: 4
+    
+    # Interface Segregation
+    interface_naming: "^I[A-Z][a-zA-Z]+$"
+    interface_directory: "app/Interfaces"
+    
+    # Dependency Inversion
+    constructor_injection: true
+    method_injection: false
+    
+    # Type Safety
+    strict_types: true
+    return_type_declaration: true
+    parameter_type_declaration: true
+
+    # Laravel Architecture Rules
+    laravel_architecture: {
+        # Directory Structure
+        directories: {
+            models: {
+                path: "app/Models"
+                naming: "^[A-Z][a-zA-Z]+$"
+                required_traits: ["HasFactory", "Notifiable"]
+                max_relations_per_model: 10
+            }
+            controllers: {
+                path: "app/Http/Controllers"
+                naming: "^[A-Z][a-zA-Z]+Controller$"
+                max_methods: 10
+                required_middleware: ["auth", "api"]
+            }
+            services: {
+                path: "app/Services"
+                naming: "^[A-Z][a-zA-Z]+Service$"
+                interface_required: true
+                max_methods: 15
+            }
+            repositories: {
+                path: "app/Repositories"
+                naming: "^[A-Z][a-zA-Z]+Repository$"
+                interface_required: true
+                required_methods: ["find", "create", "update", "delete"]
+            }
+            requests: {
+                path: "app/Http/Requests"
+                naming: "^[A-Z][a-zA-Z]+Request$"
+                validation_required: true
+            }
+            resources: {
+                path: "app/Http/Resources"
+                naming: "^[A-Z][a-zA-Z]+Resource$"
+                collection_required: true
+            }
+            events: {
+                path: "app/Events"
+                naming: "^[A-Z][a-zA-Z]+Event$"
+                listener_required: true
+            }
+            listeners: {
+                path: "app/Listeners"
+                naming: "^[A-Z][a-zA-Z]+Listener$"
+                handle_method_required: true
+            }
+            jobs: {
+                path: "app/Jobs"
+                naming: "^[A-Z][a-zA-Z]+Job$"
+                handle_method_required: true
+            }
+            mail: {
+                path: "app/Mail"
+                naming: "^[A-Z][a-zA-Z]+Mail$"
+                build_method_required: true
+            }
+            notifications: {
+                path: "app/Notifications"
+                naming: "^[A-Z][a-zA-Z]+Notification$"
+                toMail_method_required: true
+            }
+            policies: {
+                path: "app/Policies"
+                naming: "^[A-Z][a-zA-Z]+Policy$"
+                model_required: true
+            }
+            providers: {
+                path: "app/Providers"
+                naming: "^[A-Z][a-zA-Z]+ServiceProvider$"
+                register_method_required: true
+            }
+            middleware: {
+                path: "app/Http/Middleware"
+                naming: "^[A-Z][a-zA-Z]+Middleware$"
+                handle_method_required: true
+            }
+        }
+
+        # Laravel Best Practices
+        best_practices: {
+            # Database
+            database: {
+                use_migrations: true
+                use_seeders: true
+                use_factories: true
+                max_columns_per_table: 20
+                foreign_key_naming: "^[a-z]+_id$"
+                pivot_table_naming: "^[a-z]+_[a-z]+$"
+            }
+
+            # API
+            api: {
+                versioning: true
+                response_format: "json"
+                use_resources: true
+                use_api_resources: true
+                pagination_required: true
+            }
+
+            # Security
+            security: {
+                csrf_protection: true
+                xss_protection: true
+                sql_injection_protection: true
+                input_validation: true
+                output_escaping: true
+            }
+
+            # Caching
+            caching: {
+                use_cache_tags: true
+                cache_duration: 3600
+                cache_keys_naming: "^[a-z]+_[a-z]+$"
+            }
+
+            # Testing
+            testing: {
+                unit_tests: {
+                    directory: "tests/Unit"
+                    coverage: 80
+                    naming: "^[A-Z][a-zA-Z]+Test$"
+                }
+                feature_tests: {
+                    directory: "tests/Feature"
+                    coverage: 70
+                    naming: "^[A-Z][a-zA-Z]+Test$"
+                }
+                browser_tests: {
+                    directory: "tests/Browser"
+                    coverage: 60
+                    naming: "^[A-Z][a-zA-Z]+Test$"
+                }
+            }
+
+            # Documentation
+            documentation: {
+                api_documentation: true
+                code_documentation: true
+                readme_required: true
+                changelog_required: true
+            }
+        }
+
+        # Laravel Design Patterns
+        design_patterns: {
+            repository: {
+                enabled: true
+                interface_required: true
+                implementation_required: true
+            }
+            service: {
+                enabled: true
+                interface_required: true
+                implementation_required: true
+            }
+            factory: {
+                enabled: true
+                model_required: true
+            }
+            observer: {
+                enabled: true
+                model_required: true
+            }
+            strategy: {
+                enabled: true
+                interface_required: true
+            }
+            facade: {
+                enabled: true
+                service_required: true
+            }
+        }
+    }
+
+    # PSR Standards
+    psr_standards: {
+        # PSR-1 Basic Coding Standard
+        class_naming: "^[A-Z][a-zA-Z0-9]*$"
+        method_naming: "^[a-z][a-zA-Z0-9]*$"
+        constant_naming: "^[A-Z][A-Z0-9_]*$"
+        property_naming: "^[a-z][a-zA-Z0-9]*$"
+        namespace_declaration: true
+        autoloading_compliance: true
+        
+        # PSR-4 Autoloading Standard
+        psr4_autoloading: {
+            base_namespace: "App"
+            base_directory: "app"
+            namespace_mapping: {
+                "App\\": "app/"
+                "App\\Http\\Controllers\\": "app/Http/Controllers/"
+                "App\\Models\\": "app/Models/"
+                "App\\Services\\": "app/Services/"
+                "App\\Repositories\\": "app/Repositories/"
+                "App\\Interfaces\\": "app/Interfaces/"
+                "App\\Exceptions\\": "app/Exceptions/"
+                "App\\Providers\\": "app/Providers/"
+                "App\\Console\\": "app/Console/"
+                "App\\Http\\Middleware\\": "app/Http/Middleware/"
+            }
+            namespace_separator: "\\"
+            file_extension: ".php"
+        }
+        
+        # PSR-12 Extended Coding Style
+        brace_style: "same_line"
+        visibility_declaration: true
+        property_declaration_order: ["public", "protected", "private"]
+        method_declaration_order: ["public", "protected", "private"]
+        line_length: 120
+        indentation: 4
+        trailing_comma: true
+        blank_line_after_namespace: true
+        blank_line_after_opening_tag: true
+        blank_line_before_return: true
+        blank_line_before_statement: ["break", "continue", "declare", "return", "throw", "try"]
+    }
+}
+
 # PHP files
 *.php {
     tab_size: 4
